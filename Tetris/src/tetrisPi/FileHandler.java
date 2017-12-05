@@ -333,7 +333,11 @@ public class FileHandler {
 			Object objj = parser.parse(new FileReader(users_src));
 			JSONObject jsonObject = (JSONObject) objj;
 			JSONObject last = (JSONObject) jsonObject.get("last");
-			ret = (String) last.get("nickName");
+			if(last!=null){
+				ret = (String) last.get("nickName");
+			}else if(user_list.size()>0){
+				ret = user_list.get(user_list.size()-1).getUsername();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

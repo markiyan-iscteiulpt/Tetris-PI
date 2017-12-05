@@ -33,9 +33,9 @@ public class Simulator {
 		Double f = e * b * 100;
 		resultset[i] =  f.intValue();
 		}
-		
 		return resultset;
 	}
+	
 	
 	
 	/*
@@ -49,7 +49,7 @@ public class Simulator {
 		for(int i = 0; i < resultset.length; i++){
 			double a = random.nextDouble();
 			double log = Math.log(a);
-			float mxx =   1/25f; //1/25f;
+			float mxx =   1/100f;
 			double x = -mxx * log;
 			double aa = Math.round((double)x * 10000.0) / 10000.0;
 			resultset[i] =  aa;
@@ -116,7 +116,7 @@ public class Simulator {
 		int[] resultset = new int[sim_number];
 		ArrayList<Variable> figuras = new ArrayList<Variable>();
 		int piece = 0;
-		float media = 3.04f;
+		float media = 2.16f;
 			
 			
 				for (int x = 0; x < 7; x++) {
@@ -250,9 +250,4 @@ public class Simulator {
         for (int i = 1; i <= n; ++i) ret *= i;
         return ret;
     }
-	
-	
-	public static void main(String[] args) {
-		simulate_bonustime();
-	}
 }

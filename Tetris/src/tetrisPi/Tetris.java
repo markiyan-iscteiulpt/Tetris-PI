@@ -453,7 +453,7 @@ public class Tetris extends JFrame {
 		}
 	}
 	
-	double increade_speed_mxx = 1/80f;
+	double increade_speed_mxx = 1/100f;
 	
 	
 	/*
@@ -466,9 +466,7 @@ public class Tetris extends JFrame {
 		double log = Math.log(a);
 		double mxx = increade_speed_mxx;
 		double x = -mxx * log;
-		float fl = (float) x;
-		this.gameSpeed+=fl;
-		System.out.println(fl);
+		this.gameSpeed+=Math.round((double)x * 10000.0) / 10000.0;
 		logicTimer.setCyclesPerSecond(gameSpeed);
 		logicTimer.reset();
 	}
@@ -525,7 +523,7 @@ public class Tetris extends JFrame {
 	
 	
 	private double generate_piece_x = 1/7f;
-	private double generate_piece_media = 1f;
+	private double generate_piece_media = 2.16f;
 	
 	/*
 	 * Variavel discreta
@@ -540,12 +538,10 @@ public class Tetris extends JFrame {
 		double dl=level;
 			
 			if(dl%3!=0 || level==0){
-//				System.out.println("NORMAL");
 				for(int i = 0; i < TYPE_COUNT; i++){
 					figuras.add(new Variable(i, summ+=generate_piece_x));
 				}
 			}else{
-//				System.out.println("POISSON");
 				for (int x = 0; x < TYPE_COUNT; x++) {
 				double factorial = factorial(x);
 				double e =  Math.exp(-media);
@@ -586,7 +582,7 @@ public class Tetris extends JFrame {
 		return TileType.values()[piece];
 	}
 	
-	private double random_position_x = 1/10f;
+	private double random_position_x = 1/6f;
 	
 	
 	/*
