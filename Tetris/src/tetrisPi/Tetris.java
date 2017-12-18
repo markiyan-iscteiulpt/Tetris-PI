@@ -8,14 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,8 +23,8 @@ import javax.swing.JPanel;
 public class Tetris extends JFrame {
 	
 	private static final long serialVersionUID = -4722429764792514382L;
-	private final File mai_board_img = new File("images/main_board.png");
-	private final File game_over_img = new File("images/game_over.png");
+	private ImageIcon main_board_img = new ImageIcon(Tetris.class.getResource("/main_board.png"));
+	private ImageIcon game_over_img = new ImageIcon(Tetris.class.getResource("/game_over.png"));
 	private static final long FRAME_TIME = 1000L / 50L;
 	private static final int TYPE_COUNT = TileType.values().length;
 	private ActionListener button_listener;
@@ -229,14 +226,12 @@ public class Tetris extends JFrame {
 		back_to_main.addActionListener(button_listener);
 		restart.addActionListener(button_listener);
 		
-		BufferedImage myPicture = ImageIO.read(mai_board_img);
-		JLabel main_board = new JLabel(new ImageIcon(myPicture));
+		JLabel main_board = new JLabel(main_board_img);
 		main_board.setBounds(0, 0, 680, 643);
 		main_panel.setBounds(0, 0, 680, 672);
 		main_panel.add(main_board);
 		
-		BufferedImage myPicture2 = ImageIO.read(game_over_img);
-		game_over_label = new JLabel(new ImageIcon(myPicture2));
+		game_over_label = new JLabel(game_over_img);
 		game_over_label.setBounds(0, 0, 680, 643);
 		
 		end_score = new JLabel("0");
@@ -245,7 +240,7 @@ public class Tetris extends JFrame {
 		end_score.setFont(new Font("Serif", Font.BOLD, 54));
 		end_score.setBounds(350, 180, 200, 250);
 		
-		sound = new Sound();
+		//sound = new Sound();
 	}
 
 	
@@ -294,9 +289,9 @@ public class Tetris extends JFrame {
 	
 	int last = 0;
 	public void updateGame() {
-		if(!sound.isPlaying() && this.isPaused){
-			sound.verify();
-		}
+//		if(!sound.isPlaying() && this.isPaused){
+//			sound.verify();
+//		}
 
 		if(bonustime > 0){
 			if(time.getSeg() != last){
@@ -315,7 +310,7 @@ public class Tetris extends JFrame {
 			dropCooldown = 25;
 			board.addPiece(currentType, currentCol, currentRow, currentRotation);
 			checkClearedLines();
-			increaseSpeed();
+			if(!bonus_trigger){increaseSpeed();}else{logicTimer.reset();}
 			diffLevel();
 			spawnPiece();
 		}
@@ -426,22 +421,24 @@ public class Tetris extends JFrame {
 	
 	//--------------------------------------------PROBABILIDADES----------------------------------------------------------------------
 	
-	private double bonus_time_b = 1/3.4f;
-	private double bonus_time_d = 1/2f;
-	
 	
 	/*
 	 * Variavel continua
 	 * Funcao Weibull
 	 * 
 	 */
+	
+	private double bonus_time_b =1.5f;  // 1/3.4f;
+	private double bonus_time_d = 1/1.5f;  // 1/2f;
+	
 	private void bonustime(){
 		double a = random.nextDouble();
 		double b = bonus_time_b;
 		double c = -Math.log(a);
 		double d = bonus_time_d;
 		double e = Math.pow(c, d);
-		Double f = e * b * 100;
+		Double f = e * b * 10;
+		System.out.println("[BONUS TIME OF : " + f.intValue() + "s. ]");
 		if(this.bonustime + f <= 60){
 		this.bonustime += f.intValue();
 		logicTimer.setCyclesPerSecond(1f);
@@ -453,7 +450,6 @@ public class Tetris extends JFrame {
 		}
 	}
 	
-	double increade_speed_mxx = 1/100f;
 	
 	
 	/*
@@ -461,45 +457,45 @@ public class Tetris extends JFrame {
 	 * Funcao Exponencial
 	 * 
 	 */
+	
+	double increade_speed_mxx = 1f;
+	
 	private void increaseSpeed(){
 		double a = random.nextDouble();
 		double log = Math.log(a);
 		double mxx = increade_speed_mxx;
-		double x = -mxx * log;
+		double x = (-mxx * log)/100;
 		this.gameSpeed+=Math.round((double)x * 10000.0) / 10000.0;
 		logicTimer.setCyclesPerSecond(gameSpeed);
 		logicTimer.reset();
 	}
 	
-	private double random_rotation_x = 1/4f;
 	
 	
 	/*
 	 * Variavel discreta
 	 * Funcao Binomial
 	 */
+	
 	private void randomRotation(){
 		ArrayList<Variable> rotations = new ArrayList<Variable>();
 		float a = random.nextFloat();
 		int rotation = 0;
+		double res = 0.0;
+		double soma = 0.0;
 		
 		for(int k = 0; k <= 3; k++){
+		for(int j= 0; j<= k; j++){
 			int comb = combination(4, k);
-			double pexp = Math.pow(random_rotation_x, k);
-			double va = Math.pow((1-(random_rotation_x)), (4-k));
-			double res = pexp * va * comb;
-			rotations.add(new Variable(res,k));
+			double pexp = Math.pow(1/4f, k);
+			double va = Math.pow((1-(1/4f)), (4-k));
+			res = pexp * va * comb;
+		}
+			soma += res;
+			rotations.add(new Variable(soma,k));
 		}
 		
 		rotations = sortList(rotations);
-		
-//		double summa =0 ;
-//		for(Variable v:rotations){
-//			System.out.println("Tipo: " + v.getRotation() + " , Prob.: " + v.getProb());
-//			summa+=v.getProb();
-//		}
-//		System.out.println("SOMA: " + summa);
-		
 		
 		if(a > 0 && a <= rotations.get(0).getProb()) {
 			rotation = rotations.get(0).getRotation();
@@ -516,14 +512,12 @@ public class Tetris extends JFrame {
 				rotation = rotations.get(3).getRotation();
 		}
 		
-//		System.out.println("Random: " + a + " Rotation: " + rotation);
-		
 		rotatePiece(rotation);
 	}
 	
 	
 	private double generate_piece_x = 1/7f;
-	private double generate_piece_media = 2.16f;
+	private double generate_piece_media = 3f;//2.16f;
 	
 	/*
 	 * Variavel discreta
@@ -536,6 +530,8 @@ public class Tetris extends JFrame {
 		float summ = 0;
 		double media = generate_piece_media;
 		double dl=level;
+		double soma = 0;
+		double result = 0.0f;
 			
 			if(dl%3!=0 || level==0){
 				for(int i = 0; i < TYPE_COUNT; i++){
@@ -543,20 +539,17 @@ public class Tetris extends JFrame {
 				}
 			}else{
 				for (int x = 0; x < TYPE_COUNT; x++) {
-				double factorial = factorial(x);
-				double e =  Math.exp(-media);
-				double b = (float) Math.pow(media, x);
-				double result = (e*b)/factorial;
-				figuras.add(new Variable(x, (float) result));
+					for(int j= 0; j<= x; j++){
+						double factorial = factorial(x);
+						double e =  Math.exp(-media);
+						double b = (float) Math.pow(media, x);
+						result = (e*b)/factorial;
+					}
+						soma +=result;
+						figuras.add(new Variable(x, (float) soma));
 				}
 			}
 				
-//			float summa =0 ;
-//			for(Variable v:figuras){
-//				System.out.println("Figura: " + v.getType() + " , Prob.: " + v.getProb());
-//				summa+=v.getProb();
-//			}
-//			System.out.println("SOMA: " + summa);
 				figuras = sortList(figuras);
 			
 				if(a > 0 && a <= figuras.get(0).getProb()) {
@@ -577,7 +570,7 @@ public class Tetris extends JFrame {
 					piece = figuras.get(6).getType();
 				}
 				
-//			System.out.println("Random: " + a + " Peca: " + piece);
+			System.out.println("Random: " + a + " Peca: " + piece);
 			
 		return TileType.values()[piece];
 	}
@@ -603,15 +596,6 @@ public class Tetris extends JFrame {
 		}
 		
 		positions = sortList(positions);
-		
-		
-//		float summa =0 ;
-//		for(Variable v:positions){
-//			System.out.println("Position: " + v.getPosition() + " , Prob.: " + v.getProb());
-//			summa+=v.getProb();
-//		}
-//		System.out.println("SOMA: " + summa);
-			
 		
 		if(a > 0 && a <= positions.get(0).getProb()) {
 			position = positions.get(0).getPosition();
@@ -643,12 +627,6 @@ public class Tetris extends JFrame {
 			if(a > positions.get(8).getProb() && a <= positions.get(9).getProb()){
 			position = positions.get(9).getPosition();
 		}
-		
-		
-//		System.out.println("Random PROB: " + a + " Position: " + position);
-		
-		
-		
 		
 		this.currentCol = position;
 		this.currentRow = currentType.getSpawnRow();

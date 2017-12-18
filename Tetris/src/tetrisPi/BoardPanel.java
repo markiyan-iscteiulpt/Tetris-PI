@@ -25,7 +25,6 @@ public class BoardPanel extends JPanel {
 	public static final int PANEL_WIDTH = COL_COUNT * TILE_SIZE + BORDER_WIDTH * 2;
 	public static final int PANEL_HEIGHT = VISIBLE_ROW_COUNT * TILE_SIZE + BORDER_WIDTH * 2;
 	private static final Font LARGE_FONT = new Font("Tahoma", Font.BOLD, 16);
-//	private static final Font SMALL_FONT = new Font("Tahoma", Font.BOLD, 12);
 	
 	
 	private Tetris tetris;
@@ -133,19 +132,7 @@ public class BoardPanel extends JPanel {
 			String msg = "PAUSED";
 			g.drawString(msg, CENTER_X - g.getFontMetrics().stringWidth(msg) / 2, CENTER_Y);
 		} else if(tetris.isNewGame() || tetris.isGameOver()) {
-//			tetris.startMenu();
-			
-//			this.add(comp);
-//			g.setFont(LARGE_FONT);
-//			g.setColor(Color.WHITE);
-//			
-//			String msg = tetris.isNewGame() ? "TETRIS" : "GAME OVER";
-//			g.drawString(msg, CENTER_X - g.getFontMetrics().stringWidth(msg) / 2, 150);
-//			g.setFont(SMALL_FONT);
-//			msg = "Press Enter to Play" + (tetris.isNewGame() ? "" : " Again");
-//			g.drawString(msg, CENTER_X - g.getFontMetrics().stringWidth(msg) / 2, 300);
 		} else {
-			
 			for(int x = 0; x < COL_COUNT; x++) {
 				for(int y = HIDDEN_ROW_COUNT; y < ROW_COUNT; y++) {
 					TileType tile = getTile(x, y);

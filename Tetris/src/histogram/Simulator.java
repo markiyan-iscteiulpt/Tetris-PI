@@ -19,19 +19,17 @@ public class Simulator {
 	 * Funcao Weibull
 	 * 
 	 */
-	public static int[] simulate_bonustime(){
-		int[] resultset = new int[sim_number];
-		
-//		double randomNum =  random.nextDouble();
+	public static double[] simulate_bonustime(){
+		double[] resultset = new double[sim_number];
 		
 		for(int i = 0; i < resultset.length; i++){
 		double a =  random.nextDouble();
-		double b = 1/3.4f;
+		double b = 1.5f;
 		double c = -Math.log(a);
-		double d = 1/2f;
+		double d = 1/1.5f;  //1/B
 		double e = Math.pow(c, d);
-		Double f = e * b * 100;
-		resultset[i] =  f.intValue();
+		Double f = e * b;
+		resultset[i] =  f;
 		}
 		return resultset;
 	}
@@ -49,7 +47,7 @@ public class Simulator {
 		for(int i = 0; i < resultset.length; i++){
 			double a = random.nextDouble();
 			double log = Math.log(a);
-			float mxx =   1/100f;
+			float mxx =   1f;
 			double x = -mxx * log;
 			double aa = Math.round((double)x * 10000.0) / 10000.0;
 			resultset[i] =  aa;
@@ -57,6 +55,7 @@ public class Simulator {
 		return resultset;
 	}
 	
+
 	
 	
 	
@@ -69,13 +68,18 @@ public class Simulator {
 		int[] resultset = new int[sim_number];
 		ArrayList<Variable> rotations = new ArrayList<Variable>();
 		int rotation = 0;
+		double res = 0.0;
+		double soma = 0.0;
 		
 		for(int k = 0; k <= 3; k++){
+		for(int j= 0; j<= k; j++){
 			int comb = combination(4, k);
 			double pexp = Math.pow(1/4f, k);
 			double va = Math.pow((1-(1/4f)), (4-k));
-			double res = pexp * va * comb;
-			rotations.add(new Variable(res,k));
+			res = pexp * va * comb;
+		}
+			soma += res;
+			rotations.add(new Variable(soma,k));
 		}
 		
 		rotations = sortList(rotations);
@@ -116,15 +120,19 @@ public class Simulator {
 		int[] resultset = new int[sim_number];
 		ArrayList<Variable> figuras = new ArrayList<Variable>();
 		int piece = 0;
-		float media = 2.16f;
-			
-			
+		float media = 3f;
+		double result = 0.0;
+		double soma = 0;
+		
 				for (int x = 0; x < 7; x++) {
-				double factorial = factorial(x);
-				double e =  Math.exp(-media);
-				double b = (float) Math.pow(media, x);
-				double result = (e*b)/factorial;
-				figuras.add(new Variable(x, (float) result));
+				for(int j= 0; j<= x; j++){
+					double factorial = factorial(x);
+					double e =  Math.exp(-media);
+					double b = (float) Math.pow(media, x);
+					result = (e*b)/factorial;
+				}
+					soma +=result;
+					figuras.add(new Variable(x, (float) soma));
 				}
 				
 				figuras = sortList(figuras);
@@ -169,8 +177,8 @@ public class Simulator {
 		
 		for(int k = 0; k < maxPos; k++){
 			float v = (1 - (1/6f));
-			float b = (float) Math.pow(v, k);
-			float res = (float) (b - (1/6f));
+			float b = (float) Math.pow(v, (k));
+			float res = (float) (1/6f)*b;
 			positions.add(new Variable(res ,k));
 		}
 		

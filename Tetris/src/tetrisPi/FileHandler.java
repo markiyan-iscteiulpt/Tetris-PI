@@ -2,6 +2,7 @@ package tetrisPi;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +21,8 @@ import org.json.simple.parser.JSONParser;
 public class FileHandler {
 	
 	private static JSONArray users;
-	private static final String users_src = new String("data/users.txt");
+	private static File appdata = new File(System.getenv("APPDATA") + "\\" + "Tetris");
+	private static File path_file = new File(appdata.getAbsolutePath()+"/users.txt");
 	private static ArrayList<User> user_list;
 	private static JSONObject last_player;
 	
@@ -223,8 +225,7 @@ public class FileHandler {
 		users = new JSONArray();
 		JSONParser parser = new JSONParser();
 		try {
-
-			Object objj = parser.parse(new FileReader(users_src));
+			Object objj = parser.parse(new FileReader(path_file));
 			JSONObject jsonObject = (JSONObject) objj;
 			users = (JSONArray) jsonObject.get("users");
 
@@ -241,7 +242,7 @@ public class FileHandler {
 	}
 	
 	public static void writeToFile(JSONObject obj) {
-		try (FileWriter file = new FileWriter(users_src)) {
+		try (FileWriter file = new FileWriter(path_file)) {
 			file.write(obj.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -330,7 +331,7 @@ public class FileHandler {
 		String ret = "";
 		JSONParser parser = new JSONParser();
 		try {
-			Object objj = parser.parse(new FileReader(users_src));
+			Object objj = parser.parse(new FileReader(path_file));
 			JSONObject jsonObject = (JSONObject) objj;
 			JSONObject last = (JSONObject) jsonObject.get("last");
 			if(last!=null){
@@ -344,5 +345,43 @@ public class FileHandler {
 		}
 		
 		return ret;
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	private static void initFile(){
+		users = new JSONArray();
+		JSONObject new_player = new JSONObject();
+		new_player.put("nickName", "Player");
+		new_player.put("score", "0");
+		users.add(new_player);
+		JSONObject main = new JSONObject();
+		main.put("users", users);
+		main.put("last", null);
+		setLastPlayer("Player");
+		writeToFile(main);
+	}
+	
+	public static boolean configureAmb() {
+		if(!appdata.isDirectory()){
+			new File(appdata.getAbsolutePath()).mkdir();
+			if(!appdata.isDirectory()){return false;}
+		}
+		if(appdata.listFiles().length==0){
+			try {
+				new File(appdata.getAbsoluteFile()+"/users.txt").createNewFile();
+				initFile();
+			} catch (IOException e) {
+				return false;
+			}
+		}else{
+			boolean aux = false;
+			for(File f : appdata.listFiles()){
+				if(f.getName().contains("users.txt")){
+					aux = true;
+				}
+			}
+			return aux;
+		}
+		return true;
 	}
 }

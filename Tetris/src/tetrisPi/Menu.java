@@ -6,12 +6,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,13 +21,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+
 public class Menu extends JFrame{
 	
 	private static final long serialVersionUID = 1136823974110127369L;
-	private final File main_screen = new File("images/main_screen.png");
-	private final File control = new File("images/controls.png");
-	private final File select_us = new File("images/select_user.png");
-	private final File high_scor = new File("images/high_scores.png");
+	private ImageIcon main_screen = new ImageIcon(Menu.class.getResource("/main_screen.png"));
+	private ImageIcon control = new ImageIcon(Menu.class.getResource("/controls.png"));
+	private ImageIcon select_us = new ImageIcon(Menu.class.getResource("/select_user.png"));
+	private ImageIcon high_scor = new ImageIcon(Menu.class.getResource("/high_scores.png"));
 	private ArrayList<User> user_list = new ArrayList<>();
 	private User current_user;
 	private String version = "v 1.82 Beta";
@@ -79,7 +77,7 @@ public class Menu extends JFrame{
 		menu.setLayout(null);
 		menu.setPreferredSize(new Dimension(400, 450));
 		
-		
+		FileHandler.configureAmb();
 		user_list = FileHandler.readUsers();	
 		
 		String s = FileHandler.getLastPlayer();
@@ -251,20 +249,16 @@ public class Menu extends JFrame{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void init() throws IOException{
 		menu.removeAll();
-		BufferedImage myPicture = ImageIO.read(main_screen);
-		main_menu_label = new JLabel(new ImageIcon(myPicture));
+		main_menu_label = new JLabel(main_screen);
 		main_menu_label.setBounds(0, 0, 400, 450);
 		
-		BufferedImage myPicture1 = ImageIO.read(select_us);
-		select_user_label = new JLabel(new ImageIcon(myPicture1));
+		select_user_label = new JLabel(select_us);
 		select_user_label.setBounds(0, 0, 400, 450);
 
-		BufferedImage myPicture2 = ImageIO.read(high_scor);
-		high_scores_label = new JLabel(new ImageIcon(myPicture2));
+		high_scores_label = new JLabel(high_scor);
 		high_scores_label.setBounds(0, 0, 400, 450);
 		
-		BufferedImage myPicture3 = ImageIO.read(control);
-		control_label = new JLabel(new ImageIcon(myPicture3));
+		control_label = new JLabel(control);
 		control_label.setBounds(0, 0, 400, 450);
 		
 		currentUser = new JLabel(current_user.getUsername());

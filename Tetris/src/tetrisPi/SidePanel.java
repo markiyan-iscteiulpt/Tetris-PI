@@ -5,12 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,8 +15,8 @@ import javax.swing.JPanel;
 
 public class SidePanel extends JPanel{
 	
-	ArrayList<File> pieces  = new ArrayList<>();
-	private Image background = Toolkit.getDefaultToolkit().createImage("images/side_panel_bg.png");
+	ArrayList<ImageIcon> pieces  = new ArrayList<>();
+	private Image background = Toolkit.getDefaultToolkit().createImage(Tetris.class.getResource("/side_panel_bg.png"));
 	private JLabel next_piece;
 	private boolean ok = false;
 	private static final long serialVersionUID = 2181495598854992747L;
@@ -80,26 +77,40 @@ public class SidePanel extends JPanel{
 	private void update_nextPiece() throws IOException{
 		TileType type = tetris.getNextPieceType();
 		String figura_name = type.name().split("")[type.name().split("").length-1];
-		for(File f:pieces){
-			String file = f.getName().split("")[0];
-			if(file.equals(figura_name)){updateNext(f);}
+		for(ImageIcon f:pieces){
+			if(f.getDescription().equals(figura_name)){updateNext(f);}
 			
 		}
 	}
 	
 	private void loadfiguras(){
-		pieces.add(new File("pieces/I.png"));
-		pieces.add(new File("pieces/O.png"));
-		pieces.add(new File("pieces/J.png"));
-		pieces.add(new File("pieces/L.png"));
-		pieces.add(new File("pieces/S.png"));
-		pieces.add(new File("pieces/Z.png"));
-		pieces.add(new File("pieces/T.png"));
+		ImageIcon i = new ImageIcon(Tetris.class.getResource("/pieces/I.png"));
+		ImageIcon o = new ImageIcon(Tetris.class.getResource("/pieces/O.png"));
+		ImageIcon j = new ImageIcon(Tetris.class.getResource("/pieces/J.png"));
+		ImageIcon l = new ImageIcon(Tetris.class.getResource("/pieces/L.png"));
+		ImageIcon s = new ImageIcon(Tetris.class.getResource("/pieces/S.png"));
+		ImageIcon z = new ImageIcon(Tetris.class.getResource("/pieces/Z.png"));
+		ImageIcon t= new ImageIcon(Tetris.class.getResource("/pieces/T.png"));
+		
+		i.setDescription("I");
+		o.setDescription("O");
+		j.setDescription("J");
+		l.setDescription("L");
+		s.setDescription("S");
+		z.setDescription("Z");
+		t.setDescription("T");
+		
+		pieces.add(i);
+		pieces.add(o);
+		pieces.add(j);
+		pieces.add(l);
+		pieces.add(s);
+		pieces.add(z);
+		pieces.add(t);
 	}
-	private void updateNext(File f) throws IOException{
+	private void updateNext(ImageIcon f) throws IOException{
 		if(ok){this.remove(next_piece);}
-		BufferedImage imagem = ImageIO.read(f);
-		next_piece = new JLabel(new ImageIcon(imagem));
+		next_piece = new JLabel(f);
 		this.add(next_piece);
 		next_piece.setBounds(20,77, 121,92);
 		ok = true;

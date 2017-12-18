@@ -19,7 +19,7 @@ public class ExcellHandler {
 
     public static void main(String[] args) throws IOException {
     	
-    	int[] sim_of_bonustime = Simulator.simulate_bonustime();
+    	double[] sim_of_bonustime = Simulator.simulate_bonustime();
     	double[] sim_of_increaseSpeed  = Simulator.simulate_increaseSpeed();
     	int[] sim_of_randomRotation = Simulator.simulate_randomRotation();
     	int[] sim_of_RandomPiece = Simulator.simulate_generateRandomPiece();
