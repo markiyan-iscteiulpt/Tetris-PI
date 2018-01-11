@@ -26,7 +26,7 @@ public class Simulator {
 		double a =  random.nextDouble();
 		double b = 1.5f;
 		double c = -Math.log(a);
-		double d = 1/1.5f;  //1/B
+		double d = 1/1.5f;
 		double e = Math.pow(c, d);
 		Double f = e * b;
 		resultset[i] =  f;

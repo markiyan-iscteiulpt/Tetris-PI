@@ -3,22 +3,13 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/ooxml-lib/xmlbeans-2.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/poi-3.11-20141221.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/poi-examples-3.11-20141221.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/poi-excelant-3.11-20141221.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/poi-ooxml-3.11-20141221.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/poi-ooxml-schemas-3.11-20141221.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/poi-scratchpad-3.11-20141221.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons-math-2.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/math3/commons-math3-3.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/math3/commons-math3-3.6.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/math3/commons-math3-3.6.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/math3/commons-math3-3.6.1-tests.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/math3/commons-math3-3.6.1-test-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/math3/commons-math3-3.6.1-tools.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/cassandra-all-0.8.0-rc1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons/commons-lang3-3.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons/commons-lang3-3.6-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons/commons-lang3-3.6-sources.jar"/>
@@ -29,5 +20,29 @@
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons/validator/commons-validator-1.6-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons/validator/commons-validator-1.6-tests.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/commons/validator/commons-validator-1.6-test-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/cglib-nodep-3.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/commons-collections4-4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/eclipselink-javax.persistence-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/hibernate-3.2.6.ga.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/hibernate-core-4.3.5.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/mysql-connector-java-5.1.43-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/org.eclipse.paho.client.mqttv3-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/Documents/Eclipse_WORKSPACE/M-SYSTEMS/jars/super-dao-1.0.0-RC1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/cassandra-all-0.8.0-rc1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/commons-math-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/poi-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/poi-examples-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/poi-excelant-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/poi-ooxml-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/poi-ooxml-schemas-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Admin/git/Tetris-PI/Tetris/jars/poi-scratchpad-3.11-20141221.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

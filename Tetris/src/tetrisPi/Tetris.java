@@ -428,14 +428,11 @@ public class Tetris extends JFrame {
 	 * 
 	 */
 	
-	private double bonus_time_b =1.5f;  // 1/3.4f;
-	private double bonus_time_d = 1/1.5f;  // 1/2f;
-	
 	private void bonustime(){
 		double a = random.nextDouble();
-		double b = bonus_time_b;
+		double b = 1.5f;
 		double c = -Math.log(a);
-		double d = bonus_time_d;
+		double d = 1/1.5f;
 		double e = Math.pow(c, d);
 		Double f = e * b * 10;
 		System.out.println("[BONUS TIME OF : " + f.intValue() + "s. ]");
@@ -458,12 +455,10 @@ public class Tetris extends JFrame {
 	 * 
 	 */
 	
-	double increade_speed_mxx = 1f;
-	
 	private void increaseSpeed(){
 		double a = random.nextDouble();
 		double log = Math.log(a);
-		double mxx = increade_speed_mxx;
+		double mxx = 1f;
 		double x = (-mxx * log)/100;
 		this.gameSpeed+=Math.round((double)x * 10000.0) / 10000.0;
 		logicTimer.setCyclesPerSecond(gameSpeed);
@@ -528,14 +523,14 @@ public class Tetris extends JFrame {
 		float a = random.nextFloat();
 		int piece = 0;
 		float summ = 0;
-		double media = generate_piece_media;
+		double media = 3f;
 		double dl=level;
 		double soma = 0;
 		double result = 0.0f;
 			
 			if(dl%3!=0 || level==0){
 				for(int i = 0; i < TYPE_COUNT; i++){
-					figuras.add(new Variable(i, summ+=generate_piece_x));
+					figuras.add(new Variable(i, summ+=1/7f));
 				}
 			}else{
 				for (int x = 0; x < TYPE_COUNT; x++) {
@@ -589,9 +584,9 @@ public class Tetris extends JFrame {
 		int maxPos = 10;
 		
 		for(int k = 0; k < maxPos; k++){
-			double v = (1 - (random_position_x));
+			double v = (1 - (1/6f));
 			float b = (float) Math.pow(v, k);
-			float res = (float) (b - (random_position_x));
+			float res = (float) (b - (1/6f));
 			positions.add(new Variable(res ,k));
 		}
 		
